@@ -2,6 +2,15 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstagramHelp", "InstagramHelp\InstagramHelp.csproj", "{87687FC9-FA26-4928-9F00-CEAE8863DE72}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstagramHelp.Tests", "Tests\InstagramHelp.Tests\InstagramHelp.Tests.csproj", "{AB84891D-B6B9-4B1A-9026-8922641A74D6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{0E9583E7-CC84-4495-8C5B-EC1912DD0753}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "common", "common", "{6183BB0D-BF9D-4C13-A688-71FD95D1B2F2}"
+ProjectSection(SolutionItems) = preProject
+	.gitignore = .gitignore
+EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +21,12 @@ Global
 		{87687FC9-FA26-4928-9F00-CEAE8863DE72}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{87687FC9-FA26-4928-9F00-CEAE8863DE72}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{87687FC9-FA26-4928-9F00-CEAE8863DE72}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB84891D-B6B9-4B1A-9026-8922641A74D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB84891D-B6B9-4B1A-9026-8922641A74D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB84891D-B6B9-4B1A-9026-8922641A74D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB84891D-B6B9-4B1A-9026-8922641A74D6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AB84891D-B6B9-4B1A-9026-8922641A74D6} = {0E9583E7-CC84-4495-8C5B-EC1912DD0753}
 	EndGlobalSection
 EndGlobal
