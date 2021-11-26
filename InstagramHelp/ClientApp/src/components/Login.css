@@ -595,6 +595,36 @@
     left: 50%;
 }
 
+.eiCW- {
+    /* color: #ed4956; */
+    color: rgba(var(--i30,237,73,86),1);
+    margin: 10px 40px;
+}
+
+.eiCW-, .W19pC, .a1KEf {
+    font-size: 14px;
+    line-height: 18px;
+    text-align: center;
+}
+
+._2Lks6, ._2Lks6:hover, ._2Lks6:active, ._2Lks6:visited {
+    color: #00376b;
+    color: rgba(var(--fe0,0,55,107),1);
+    font-size: 12px;
+    line-height: 16px;
+    margin-top: 12px;
+    text-align: center;
+}
+
+._2Lks6, ._2Lks6:hover, ._2Lks6:active, ._2Lks6:visited {
+    color: #00376b;
+    color: rgba(var(--fe0,0,55,107),1);
+    font-size: 12px;
+    line-height: 16px;
+    margin-top: 12px;
+    text-align: center;
+}
+
 .FSiF6 {
     -webkit-animation: IGCoreSpinnerSpin8 .8s steps(8) infinite;
     animation: IGCoreSpinnerSpin8 .8s steps(8) infinite;

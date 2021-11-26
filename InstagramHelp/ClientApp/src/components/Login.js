@@ -1,6 +1,18 @@
 import React, { Component } from 'react';
 import './Login.css';
 
+function LoginFailed(props) {
+    if(props.loginFailed)
+    {
+        return <div className="eiCW-"><p aria-atomic="true" data-testid="login-error-message"
+                                         id="slfErrorAlert" role="alert">{props.message}</p></div>
+    }
+    else
+    {
+        return <div className="eiCW-"/>
+    }
+}
+
 function EnterButton(props) {
     if(!props.loadingLogin)
     {
@@ -65,7 +77,7 @@ function ShowButton(props) {
 
 export class Login extends Component {
 
-    componentDidMount(){
+    componentDidMount(props){
         document.title = "Войти";
     }
     
@@ -83,6 +95,8 @@ export class Login extends Component {
             passwordLabelClass: '',
             showButtonIsVisible: false,
             loadingLogin: false,
+            loginFailed: false,
+            loginFailedMessage: ''
         };
         this.changePasswordStatus = this.changePasswordStatus.bind(this);
         this.updateLoginValue = this.updateLoginValue.bind(this);
@@ -177,8 +191,30 @@ export class Login extends Component {
                 Password: this.state.passwordValue,
             })
         };
-        const fetchResponse = await fetch('Account/login', settings);
+        const fetchResponse = await fetch('api/auth/login', settings);
         const data = await fetchResponse.json();
+        
+        if(fetchResponse.status === 403)
+        {
+            if(data.message === 'Invalid Credentials')
+            {
+                this.setState({
+                    loginFailed: true,
+                    loginFailedMessage: 'К сожалению, вы ввели неправильный пароль. Проверьте свой пароль еще раз.'
+                });
+            }
+            else
+            {
+                this.setState({
+                    loginFailed: true,
+                    loginFailedMessage: 'Во время авторизации произошла непредвиденная ошибка'
+                });
+            }
+        }
+        else
+        {
+            this.props.authCheck();
+        }
 
         this.setState({
             loadingLogin: false
@@ -227,6 +263,9 @@ export class Login extends Component {
                                             </button>
                                         </div>
                                     </div>
+                                    <LoginFailed loginFailed={this.state.loginFailed} message={this.state.loginFailedMessage}/>
+                                    <a className="_2Lks6" href="https://www.instagram.com/accounts/password/reset/" tabIndex="0">Забыли
+                                        пароль?</a>
                                 </form>
                             </div>
                         </div>

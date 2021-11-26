@@ -1,7 +1,4 @@
 namespace InstagramHelp.Models.Account
 {
-    public class LoginResp
-    {
-        
-    }
+    public record LoginResp(string Message);
 }
