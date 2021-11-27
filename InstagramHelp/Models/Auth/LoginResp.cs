@@ -1,4 +1,4 @@
-namespace InstagramHelp.Models.Account
+namespace InstagramHelp.Models.Auth
 {
     public record LoginResp(string Message);
 }

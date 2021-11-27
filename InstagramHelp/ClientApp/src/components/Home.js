@@ -3,6 +3,10 @@ import React, { Component } from 'react';
 export class Home extends Component {
   static displayName = Home.name;
 
+    componentDidMount(props){
+        document.title = "Страница";
+    }
+
   render () {
     return (
       <div>

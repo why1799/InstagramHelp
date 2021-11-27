@@ -14,7 +14,8 @@ export default class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isLoggedIn: null
+            isLoggedIn: null,
+            userName: null
         };
 
         this.isAuthorized = this.isAuthorized.bind(this);
@@ -33,7 +34,8 @@ export default class App extends Component {
         const data = await fetchResponse.json();
 
         this.setState({
-            isLoggedIn: data
+            isLoggedIn: data.isAuthorized,
+            userName: data.userName
         });
     }
 
@@ -41,10 +43,10 @@ export default class App extends Component {
     render () {
         if(this.state.isLoggedIn === null)
         {
-            return <Layout/>
+            return <header/>;
         }
         return (
-            <Layout>
+            <Layout isLoggedIn={this.state.isLoggedIn} userName={this.state.userName} authCheck={this.isAuthorized}>
                 <Route exact path='/' render={() => (
                     this.state.isLoggedIn ? <Home/> : <Redirect to="/login" />
                 )}/>

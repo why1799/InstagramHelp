@@ -32,6 +32,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="wwwroot\account\photos" />
       <Folder Include="wwwroot\images" />
     </ItemGroup>
 
