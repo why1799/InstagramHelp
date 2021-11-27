@@ -1,0 +1,25 @@
+.loading_size{
+    height: 32px;
+    width: 32px;
+}
+
+.jmJva {
+    margin-top: 40px !important;
+    height: 48px;
+    align-items: center !important;
+}
+
+.By4nA {
+    -webkit-animation: IGCoreSpinnerSpin12 1.2s steps(12) infinite;
+    animation: IGCoreSpinnerSpin12 1.2s steps(12) infinite;
+}
+
+
+@keyframes IGCoreSpinnerSpin12{
+    from {
+        transform:rotate(0deg)
+    }
+    to {
+        transform:rotate(360deg)
+    }
+}
