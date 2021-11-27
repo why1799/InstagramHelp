@@ -572,12 +572,6 @@
     line-height: 18px;
 }
 
-.y3zKF[disabled]:not(.yWX7d):not(.A086a), a.y3zKF[disabled]:not(.yWX7d):not(.A086a), a.y3zKF[disabled]:not(.yWX7d):not(.A086a):visited {
-    background-color: rgba(0,149,246,.3);
-    background-color: rgba(var(--d69,0,149,246),.3);
-    opacity: 1;
-}
-
 .FATdn .pexuQ {
     font-size: 12px;
     padding: 14px 0 2px 8px!important;
@@ -593,7 +587,7 @@
 .loading_div{
     height: 18px;
     width: 18px;
-    left: 50%;
+    left: 45%;
 }
 
 .eiCW- {

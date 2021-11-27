@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Login.css';
+import {SmallLoader} from "./SmallLoader";
 
 function LoginFailed(props) {
     if(props.loginFailed)
@@ -10,49 +11,6 @@ function LoginFailed(props) {
     else
     {
         return <div className="eiCW-"/>
-    }
-}
-
-function EnterButton(props) {
-    if(!props.loadingLogin)
-    {
-        return <div
-            className="   flex_column          qF0y9          Igw0E     IwRSH      eGOV_         _4EzTm                                                                                                              ">Войти
-        </div>
-    }
-    else
-    {
-        return <div
-            className="    flex_column         qF0y9          Igw0E     IwRSH        YBx95       _4EzTm  loading_div                                                                                                             _9qQ0O ZUqME"
-            data-visualcompletion="loading-state">
-            <svg aria-label="Загрузка…" className=" FSiF6 "
-                 viewBox="0 0 100 100">
-                <rect fill="#fafafa" height="10" opacity="0" rx="5" ry="5"
-                      transform="rotate(-90 50 50)" width="28" x="67"
-                      y="45"></rect>
-                <rect fill="#fafafa" height="10" opacity="0.125" rx="5" ry="5"
-                      transform="rotate(-45 50 50)" width="28" x="67"
-                      y="45"></rect>
-                <rect fill="#fafafa" height="10" opacity="0.25" rx="5" ry="5"
-                      transform="rotate(0 50 50)" width="28" x="67"
-                      y="45"></rect>
-                <rect fill="#fafafa" height="10" opacity="0.375" rx="5" ry="5"
-                      transform="rotate(45 50 50)" width="28" x="67"
-                      y="45"></rect>
-                <rect fill="#fafafa" height="10" opacity="0.5" rx="5" ry="5"
-                      transform="rotate(90 50 50)" width="28" x="67"
-                      y="45"></rect>
-                <rect fill="#fafafa" height="10" opacity="0.625" rx="5" ry="5"
-                      transform="rotate(135 50 50)" width="28" x="67"
-                      y="45"></rect>
-                <rect fill="#fafafa" height="10" opacity="0.75" rx="5" ry="5"
-                      transform="rotate(180 50 50)" width="28" x="67"
-                      y="45"></rect>
-                <rect fill="#fafafa" height="10" opacity="0.875" rx="5" ry="5"
-                      transform="rotate(225 50 50)" width="28" x="67"
-                      y="45"></rect>
-            </svg>
-        </div>
     }
 }
 
@@ -259,7 +217,7 @@ export class Login extends Component {
                                         <div
                                             className="    flex_column         qF0y9          Igw0E     IwRSH      eGOV_         _4EzTm    bkEs3                          CovQj                  jKUp7          DhRcB                                                    ">
                                             <button className="sqdOP  L3NKy   y3zKF  btn_font   " disabled={this.state.disableEnter} type="submit">
-                                                <EnterButton loadingLogin={this.state.loadingLogin}/>
+                                                <SmallLoader text={"Войти"} loading={this.state.loadingLogin} colour={"#fafafa"}/>
                                             </button>
                                         </div>
                                     </div>

@@ -1,12 +1,11 @@
 using System.Collections.Generic;
-using System.IO;
-using System.Net.Http;
 using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
 using InstagramApiSharp.API;
 using InstagramApiSharp.Classes;
 using InstagramHelp.Models.Auth;
+using InstagramHelp.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
@@ -19,9 +18,6 @@ namespace InstagramHelp.Controllers
     public sealed class AuthController : ControllerBase
     {
         private readonly IInstaApi _instaApi;
-        private const string Root = "wwwroot/";
-        private const string PhotoFolderPath = "account/photos/";
-        private const string PhotoExtension = ".png";
 
         public AuthController(IInstaApi instaApi)
         {
@@ -38,6 +34,7 @@ namespace InstagramHelp.Controllers
         public async Task<IActionResult> LogOut(CancellationToken cancellationToken)
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            await _instaApi.LogoutAsync();
             return new NoContentResult();
         }
 
@@ -59,7 +56,12 @@ namespace InstagramHelp.Controllers
                 return StatusCode(StatusCodes.Status403Forbidden, new LoginResp(loginResult.Info.Message));
             }
 
-            await DownloadPhotoAsync();
+            var currentUser = await _instaApi.GetCurrentUserAsync();
+            if (!currentUser.Succeeded)
+            {
+                return StatusCode(StatusCodes.Status403Forbidden, new LoginResp(loginResult.Info.Message));
+            }
+            await FileSaverService.DownloadPhotoAsync(currentUser.Value);
 
             var auth =  await _instaApi.GetStateDataAsStringAsync();
             
@@ -73,23 +75,6 @@ namespace InstagramHelp.Controllers
                 principal, new AuthenticationProperties { IsPersistent = true });
 
             return StatusCode(StatusCodes.Status200OK, new LoginResp(loginResult.Info.Message));
-        }
-
-        private async Task DownloadPhotoAsync()
-        {
-            var result = await _instaApi.GetCurrentUserAsync();
-            var path = $"{PhotoFolderPath}{result.Value.UserName}{PhotoExtension}";
-            
-            var httpClient = new HttpClient(); 
-            var fileResponse = await httpClient.GetAsync(result.Value.ProfilePicture);
-            byte[] bytes = await fileResponse.Content.ReadAsByteArrayAsync();
-
-            if (!Directory.Exists(Path.Combine(Root, PhotoFolderPath)))
-            {
-                Directory.CreateDirectory(Path.Combine(Root, PhotoFolderPath));
-            }
-            
-            await System.IO.File.WriteAllBytesAsync($"{Root}{path}", bytes);
         }
     }
 }
